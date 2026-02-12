@@ -62,25 +62,24 @@ Gerenciamento de estados - Navegação por rotas
   API Docs     Swagger (/docs)
 
 ------------------------------------------------------------------------
+trutura do Projeto
 
-Barbearia_System/
-│
-├── backend/
-│ ├── main.py
-│ ├── models/
-│ ├── routes/
-│ ├── database/
-│ └── requirements.txt
-│
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ └── services/
-│ ├── package.json
-│ └── vite.config.ts
-│
-└── barbearia.db
+**Barbearia_System**
+
+- **backend**
+  - main.py
+  - models/
+  - routes/
+  - database/
+  - requirements.txt
+
+- **frontend**
+  - src/
+    - components/
+    - pages/
+    - services/
+  - package.json
+  - vite.config.ts
 ------------------------------------------------------------------------
 
 ##  Funcionalidades Implementadas

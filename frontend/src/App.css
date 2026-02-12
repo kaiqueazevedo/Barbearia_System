@@ -134,8 +134,8 @@ button:focus-visible {
   font-family: inherit;
   font-size: 16px;
   padding: 10px 12px;
-  /* width: 100%; removido para não ocupar a linha toda */
-  max-width: 400px;
+  width: 100%; 
+  max-width: 400px; 
   margin-right: 10px;    /* Adicionado espaço entre input e botão */
   margin-bottom: 0px;    /* Removido para alinhar verticalmente com o botão */
   border-radius: 8px;
@@ -150,7 +150,7 @@ button:focus-visible {
 /* Botões de submit padrão dentro da page-container */
 .page-container button[type="submit"] {
   font-size: 16px;
-  padding: 10px 20px;    /* Ajustado para igualar a altura do input */
+  padding: 10px 10px;    /* Ajustado para igualar a altura do input */
   min-width: 100px;
   border-radius: 8px;
   margin-top: 0px;       /* Removido o margin-top que quebrava o alinhamento */
@@ -180,4 +180,4 @@ button:focus-visible {
   .page-container button[type="submit"]:hover {
     border-color: #646cff;
   }
-} */
+} 

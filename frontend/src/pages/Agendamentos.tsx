@@ -169,7 +169,7 @@ export default function Agendamentos() {
         />
         
         <button type="submit" className="btn-gold" disabled={loadingForm}>
-          {loadingForm ? "Processando..." : "Confirmar e Colocar na Fila"}
+          {loadingForm ? "Processando..." : "Confirmar"}
         </button>
       </form>
 

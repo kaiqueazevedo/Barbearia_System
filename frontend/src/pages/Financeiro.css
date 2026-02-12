@@ -1,63 +1,113 @@
+/* --- CONTAINER FINANCEIRO PADRONIZADO --- */
 .financeiro-container {
   max-width: 900px;
-  margin: 20px auto;
-  padding: 15px;
-  /* background: #fff; */
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 12px; /* Ligeiramente maior para o container externo */
+  background-color: transparent;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.25s;
 }
 
+/* --- FORMULÁRIO DE MOVIMENTAÇÃO --- */
 .form-movimento {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 30px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
+/* Inputs e Selects seguindo o padrão da .page-container */
 .form-movimento input,
 .form-movimento select {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 16px; /* Padronizado conforme seu pedido inicial */
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #1a1a1a;
+  color: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.25s;
 }
 
+.form-movimento input:focus,
+.form-movimento select:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
+/* --- BOTÕES DO FINANCEIRO --- */
 .form-movimento button {
-  padding: 8px 15px;
-  background-color: #3b82f6;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #646cff; /* Azul padrão global */
+  color: #ffffff;
   cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
 }
 
 .form-movimento button:hover {
-  background-color: #2563eb;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: #535bf2;
 }
 
+/* --- TABELA DE MOVIMENTOS --- */
 .grid-movimentos table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.95rem;
 }
 
-.grid-movimentos th, .grid-movimentos td {
-  padding: 10px;
+.grid-movimentos th, 
+.grid-movimentos td {
+  padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px  rgba(0,0,0.2);
+  border:lightblue.
 }
 
+.grid-movimentos th {
+  font-weight: 600;
+  color: #646cff;
+}
+
+/* --- STATUS E TOTAIS --- */
 .valor-entrada {
-  color: green;
+  color: #4ade80; 
+  font-weight: 600;
 }
 
 .valor-saida {
-  color: red;
+  color: #f87171; 
+  font-weight: 600;
 }
 
 .total-diario {
-  margin-top: 15px;
-  font-size: 1.2rem;
+  margin-top: 25px;
+  padding-top: 15px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-top: 2px solid #646cff;
+  text-align: right;
 }
 
-.filtro-container {
-  margin-bottom: 15px;
-}
+/* --- ADAPTAÇÃO PARA TEMA CLARO --- */
+@media (prefers-color-scheme: light) {
+  .financeiro-container {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .form-movimento input,
+  .form-movimento select {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+  }
+

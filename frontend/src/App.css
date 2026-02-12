@@ -1,5 +1,6 @@
-:root {
-  --primary: #cba35c; /* Dourado Barbearia */
+/* 
+/*:root {
+  --primary: #cba35c; 
   --bg-dark: #0f0f0f;
   --bg-card: #1a1a1a;
   --text-main: #ffffff;
@@ -25,7 +26,7 @@
 .main-content {
   flex: 1;
   width: 100%;
-  max-width: 1400px; /* Centraliza o conteúdo em telas ultra-wide */
+  max-width: 1400px; 
   margin: 0 auto;
   padding: 40px;
   animation: fadeIn 0.5s ease-out;
@@ -36,19 +37,147 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/*
 .page-container button[type="submit"] {
-  font-size: 16px;         /* aumenta a fonte do texto */
-  padding: 12px 20px;      /* aumenta o espaço interno (altura e largura) */
-  min-width: 150px;        /* largura mínima consistente */
-  border-radius: 6px;      /* cantos arredondados */
-  margin-top: 10px;        /* espaço acima do botão */
-  border: none;            /* remove borda padrão */
-  background-color: #2563eb; /* cor consistente com Financeiro */
-  color: #fff;             /* texto branco */
+  font-size: 16px;         
+  padding: 12px 20px;      
+  min-width: 150px;        
+  border-radius: 6px;      
+  margin-top: 10px;        
+  border: none;            
+  background-color: #1e1e2f; 
+  color: #fff;             
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.page-container button[type="submit"]:hover {
-  background-color: #3a3a5c; /* efeito hover */
+/*.page-container button[type="submit"]:hover {
+  background-color: #3a3a5c; 
+*
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+/* Tamanho e padding padrão de todos os inputs, selects e textareas */
+/* Tamanho e padding padrão de todos os inputs, selects e textareas */
+/* Tamanho e padding padrão de todos os inputs, selects e textareas */
+.page-container input,
+.page-container select,
+.page-container textarea {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px 12px;
+  /* width: 100%; removido para não ocupar a linha toda */
+  max-width: 400px;
+  margin-right: 10px;    /* Adicionado espaço entre input e botão */
+  margin-bottom: 0px;    /* Removido para alinhar verticalmente com o botão */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: inherit;
+  display: inline-block; /* Garante que aceite o botão ao lado */
+  vertical-align: middle;
+}
+
+/* Botões de submit padrão dentro da page-container */
+.page-container button[type="submit"] {
+  font-size: 16px;
+  padding: 10px 20px;    /* Ajustado para igualar a altura do input */
+  min-width: 100px;
+  border-radius: 8px;
+  margin-top: 0px;       /* Removido o margin-top que quebrava o alinhamento */
+  border: 1px solid transparent;
+  background-color: #646cff;
+  color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.page-container button[type="submit"]:hover {
+  background-color: #535bf2;
+  border-color: #ffffff;
+}
+
+/* Ajuste específico para o tema claro */
+@media (prefers-color-scheme: light) {
+  .page-container input,
+  .page-container select,
+  .page-container textarea {
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+  }
+  
+  .page-container button[type="submit"]:hover {
+    border-color: #646cff;
+  }
+} */

@@ -249,32 +249,241 @@
 
 
 
-# main.py
-from fastapi import FastAPI, HTTPException
+# # main.py
+# from fastapi import FastAPI, HTTPException
+# from fastapi.middleware.cors import CORSMiddleware
+# from pydantic import BaseModel
+# from typing import List
+# from datetime import datetime
+# from routers.financeiro import router as financeiro_router
+
+# from routers.financeiro import router as financeiro_router
+# from fastapi import FastAPI
+
+# from fastapi import APIRouter
+# from pydantic import BaseModel
+# from typing import List
+# from fastapi import APIRouter, HTTPException
+# from pydantic import BaseModel
+
+
+
+# app = FastAPI()
+# app.include_router(financeiro_router)
+# app.include_router(estoque_router)
+
+
+
+# estoque_router = APIRouter()
+
+# # Modelo
+# class EstoqueItem(BaseModel):
+#     id: int
+#     produto: str
+#     marca: str
+#     quantidade: int
+
+# # Dados em memória (substitua por banco real depois)
+# estoque_db = []
+
+# # Listar todos os itens
+# @estoque_router.get("/estoque/")
+# def listar_estoque():
+#     return estoque_db
+
+# # Adicionar novo item
+# @estoque_router.post("/estoque/")
+# def adicionar_item(item: EstoqueItem):
+#     estoque_db.append(item)
+#     return item
+
+# # Atualizar quantidade (saída ou ajuste)
+# @estoque_router.put("/estoque/{item_id}")
+# def atualizar_item(item_id: int, qtd: int):
+#     for i, item in enumerate(estoque_db):
+#         if item.id == item_id:
+#             if item.quantidade - qtd < 0:
+#                 raise HTTPException(status_code=400, detail="Quantidade insuficiente")
+#             estoque_db[i].quantidade -= qtd
+#             return estoque_db[i]
+#     raise HTTPException(status_code=404, detail="Item não encontrado")
+
+# # --- CORS (para permitir frontend) ---
+
+# origins = [
+#     "http://localhost:5173",
+#     "http://127.0.0.1:5173",
+#     "http://localhost:5174",   
+#     "http://127.0.0.1:5174",  
+# ]
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+# # --- Modelos ---
+# class BaseItem(BaseModel):
+#     id: int
+#     nome: str
+
+# class Servico(BaseItem):
+#     preco: float
+
+# class Agendamento(BaseModel):
+#     id: int
+#     cliente_id: int
+#     barbeiro_id: int
+#     servico_id: int
+#     valor_pago: float
+#     data: str
+#     status: str
+
+# class AgendamentoCreate(BaseModel):
+#     cliente_id: int
+#     barbeiro_id: int
+#     servico_id: int
+#     valor_pago: float
+#     data: str
+#     status: str
+
+# class Faturamento(BaseModel):
+#     barbeiro_id: int
+#     valor: float
+#     data: str
+
+# # --- "Banco de dados" fake para teste ---
+# clientes = [BaseItem(id=1, nome="Kaique")]
+# barbeiros = [BaseItem(id=1, nome="Barbeiro1")]
+# servicos = [Servico(id=1, nome="Corte", preco=30.0)]
+# agendamentos: List[Agendamento] = []
+# faturamentos: List[Faturamento] = []
+
+# # --- Função para registrar faturamento ---
+# def registrar_faturamento(barbeiro_id: int, valor: float):
+#     hoje = datetime.now().strftime("%Y-%m-%d")
+#     faturamentos.append(Faturamento(barbeiro_id=barbeiro_id, valor=valor, data=hoje))
+
+# # --- Rotas ---
+# @app.get("/clientes", response_model=List[BaseItem])
+# def listar_clientes():
+#     return clientes
+
+# @app.get("/barbeiros", response_model=List[BaseItem])
+# def listar_barbeiros():
+#     return barbeiros
+
+# @app.get("/servicos", response_model=List[Servico])
+# def listar_servicos():
+#     return servicos
+
+# @app.get("/agendamentos", response_model=List[Agendamento])
+# def listar_agendamentos():
+#     return agendamentos
+
+# @app.post("/agendamentos", response_model=Agendamento)
+# def criar_agendamento(a: AgendamentoCreate):
+#     novo_id = len(agendamentos) + 1
+#     ag = Agendamento(id=novo_id, **a.dict())
+#     agendamentos.append(ag)
+#     return ag
+
+# @app.patch("/agendamentos/{agendamento_id}/status")
+# def atualizar_status(agendamento_id: int, status: dict):
+#     for ag in agendamentos:
+#         if ag.id == agendamento_id:
+#             ag.status = status.get("status", ag.status)
+            
+#             # Se mudou para realizado, registra no faturamento
+#             if ag.status.lower() == "realizado":
+#                 registrar_faturamento(ag.barbeiro_id, ag.valor_pago)
+            
+#             return {"message": "Status atualizado"}
+#     raise HTTPException(status_code=404, detail="Agendamento não encontrado")
+
+# @app.delete("/agendamentos/{agendamento_id}")
+# def deletar_agendamento(agendamento_id: int):
+#     global agendamentos
+#     agendamentos = [a for a in agendamentos if a.id != agendamento_id]
+#     return {"message": "Agendamento deletado"}
+
+# # --- Rotas de faturamento ---
+# @app.get("/financeiro")
+# def faturamento_dia():
+#     hoje = datetime.now().strftime("%Y-%m-%d")
+#     total = sum(f.valor for f in faturamentos if f.data == hoje)
+#     return {"data": hoje, "total": total}
+
+# @app.get("/faturamento/barbeiro/{barbeiro_id}")
+# def faturamento_barbeiro(barbeiro_id: int):
+#     total = sum(f.valor for f in faturamentos if f.barbeiro_id == barbeiro_id)
+#     return {"barbeiro_id": barbeiro_id, "total": total}
+
+
+# # Adicionar cliente
+# @app.post("/clientes", response_model=BaseItem)
+# def criar_cliente(c: BaseItem):
+#     clientes.append(c)
+#     return c
+
+# # Adicionar barbeiro
+# @app.post("/barbeiros", response_model=BaseItem)
+# def criar_barbeiro(b: BaseItem):
+#     barbeiros.append(b)
+#     return b
+
+# # Adicionar serviço
+# @app.post("/servicos", response_model=Servico)
+# def criar_servico(s: Servico):
+#     servicos.append(s)
+#     return s
+
+
+
+# router = APIRouter()
+
+# class Movimento(BaseModel):
+#     id: int
+#     descricao: str
+#     entrada: float = 0
+#     saida: float = 0
+#     data: str
+
+# movimentos: List[Movimento] = []
+
+# @router.get("/financeiro", response_model=List[Movimento])
+# def listar_movimentos():
+#     return movimentos
+
+# @router.post("/financeiro", response_model=Movimento)
+# def adicionar_movimento(m: Movimento):
+#     movimentos.append(m)
+#     return m
+
+
+
+
+
+
+
+
+
+from fastapi import FastAPI, APIRouter, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from datetime import datetime
-from routers.financeiro import router as financeiro_router
-
-from routers.financeiro import router as financeiro_router
-
-from fastapi import APIRouter
-from pydantic import BaseModel
-from typing import List
-
 
 app = FastAPI()
-app.include_router(financeiro_router)
 
-
-# --- CORS (para permitir frontend) ---
-
+# --- CORS ---
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://localhost:5174",   
-    "http://127.0.0.1:5174",  
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -284,7 +493,68 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Modelos ---
+# ==========================
+# --- FINANCEIRO ROUTER ---
+# ==========================
+financeiro_router = APIRouter()
+
+class Movimento(BaseModel):
+    id: int
+    descricao: str
+    entrada: float = 0
+    saida: float = 0
+    data: str
+
+movimentos: List[Movimento] = []
+
+@financeiro_router.get("/financeiro", response_model=List[Movimento])
+def listar_movimentos():
+    return movimentos
+
+@financeiro_router.post("/financeiro", response_model=Movimento)
+def adicionar_movimento(m: Movimento):
+    movimentos.append(m)
+    return m
+
+app.include_router(financeiro_router)
+
+# ==========================
+# --- ESTOQUE ROUTER ---
+# ==========================
+estoque_router = APIRouter()
+
+class EstoqueItem(BaseModel):
+    id: int
+    produto: str
+    marca: str
+    quantidade: int
+
+estoque_db: List[EstoqueItem] = []
+
+@estoque_router.get("/estoque/")
+def listar_estoque():
+    return estoque_db
+
+@estoque_router.post("/estoque/")
+def adicionar_item(item: EstoqueItem):
+    estoque_db.append(item)
+    return item
+
+@estoque_router.put("/estoque/{item_id}")
+def atualizar_item(item_id: int, qtd: int):
+    for i, item in enumerate(estoque_db):
+        if item.id == item_id:
+            if item.quantidade - qtd < 0:
+                raise HTTPException(status_code=400, detail="Quantidade insuficiente")
+            estoque_db[i].quantidade -= qtd
+            return estoque_db[i]
+    raise HTTPException(status_code=404, detail="Item não encontrado")
+
+app.include_router(estoque_router)
+
+# ==========================
+# --- CLIENTES, BARBEIROS, SERVIÇOS ---
+# ==========================
 class BaseItem(BaseModel):
     id: int
     nome: str
@@ -292,6 +562,40 @@ class BaseItem(BaseModel):
 class Servico(BaseItem):
     preco: float
 
+clientes: List[BaseItem] = [BaseItem(id=1, nome="Kaique")]
+barbeiros: List[BaseItem] = [BaseItem(id=1, nome="Barbeiro1")]
+servicos: List[Servico] = [Servico(id=1, nome="Corte", preco=30.0)]
+
+@app.get("/clientes", response_model=List[BaseItem])
+def listar_clientes():
+    return clientes
+
+@app.post("/clientes", response_model=BaseItem)
+def criar_cliente(c: BaseItem):
+    clientes.append(c)
+    return c
+
+@app.get("/barbeiros", response_model=List[BaseItem])
+def listar_barbeiros():
+    return barbeiros
+
+@app.post("/barbeiros", response_model=BaseItem)
+def criar_barbeiro(b: BaseItem):
+    barbeiros.append(b)
+    return b
+
+@app.get("/servicos", response_model=List[Servico])
+def listar_servicos():
+    return servicos
+
+@app.post("/servicos", response_model=Servico)
+def criar_servico(s: Servico):
+    servicos.append(s)
+    return s
+
+# ==========================
+# --- AGENDAMENTOS ---
+# ==========================
 class Agendamento(BaseModel):
     id: int
     cliente_id: int
@@ -309,35 +613,7 @@ class AgendamentoCreate(BaseModel):
     data: str
     status: str
 
-class Faturamento(BaseModel):
-    barbeiro_id: int
-    valor: float
-    data: str
-
-# --- "Banco de dados" fake para teste ---
-clientes = [BaseItem(id=1, nome="Kaique")]
-barbeiros = [BaseItem(id=1, nome="Barbeiro1")]
-servicos = [Servico(id=1, nome="Corte", preco=30.0)]
 agendamentos: List[Agendamento] = []
-faturamentos: List[Faturamento] = []
-
-# --- Função para registrar faturamento ---
-def registrar_faturamento(barbeiro_id: int, valor: float):
-    hoje = datetime.now().strftime("%Y-%m-%d")
-    faturamentos.append(Faturamento(barbeiro_id=barbeiro_id, valor=valor, data=hoje))
-
-# --- Rotas ---
-@app.get("/clientes", response_model=List[BaseItem])
-def listar_clientes():
-    return clientes
-
-@app.get("/barbeiros", response_model=List[BaseItem])
-def listar_barbeiros():
-    return barbeiros
-
-@app.get("/servicos", response_model=List[Servico])
-def listar_servicos():
-    return servicos
 
 @app.get("/agendamentos", response_model=List[Agendamento])
 def listar_agendamentos():
@@ -355,11 +631,6 @@ def atualizar_status(agendamento_id: int, status: dict):
     for ag in agendamentos:
         if ag.id == agendamento_id:
             ag.status = status.get("status", ag.status)
-            
-            # Se mudou para realizado, registra no faturamento
-            if ag.status.lower() == "realizado":
-                registrar_faturamento(ag.barbeiro_id, ag.valor_pago)
-            
             return {"message": "Status atualizado"}
     raise HTTPException(status_code=404, detail="Agendamento não encontrado")
 
@@ -369,8 +640,21 @@ def deletar_agendamento(agendamento_id: int):
     agendamentos = [a for a in agendamentos if a.id != agendamento_id]
     return {"message": "Agendamento deletado"}
 
-# --- Rotas de faturamento ---
-@app.get("/financeiro")
+# ==========================
+# --- FATURAMENTO ---
+# ==========================
+class Faturamento(BaseModel):
+    barbeiro_id: int
+    valor: float
+    data: str
+
+faturamentos: List[Faturamento] = []
+
+def registrar_faturamento(barbeiro_id: int, valor: float):
+    hoje = datetime.now().strftime("%Y-%m-%d")
+    faturamentos.append(Faturamento(barbeiro_id=barbeiro_id, valor=valor, data=hoje))
+
+@app.get("/financeiro/faturamento_dia")
 def faturamento_dia():
     hoje = datetime.now().strftime("%Y-%m-%d")
     total = sum(f.valor for f in faturamentos if f.data == hoje)
@@ -380,44 +664,3 @@ def faturamento_dia():
 def faturamento_barbeiro(barbeiro_id: int):
     total = sum(f.valor for f in faturamentos if f.barbeiro_id == barbeiro_id)
     return {"barbeiro_id": barbeiro_id, "total": total}
-
-
-# Adicionar cliente
-@app.post("/clientes", response_model=BaseItem)
-def criar_cliente(c: BaseItem):
-    clientes.append(c)
-    return c
-
-# Adicionar barbeiro
-@app.post("/barbeiros", response_model=BaseItem)
-def criar_barbeiro(b: BaseItem):
-    barbeiros.append(b)
-    return b
-
-# Adicionar serviço
-@app.post("/servicos", response_model=Servico)
-def criar_servico(s: Servico):
-    servicos.append(s)
-    return s
-
-
-
-router = APIRouter()
-
-class Movimento(BaseModel):
-    id: int
-    descricao: str
-    entrada: float = 0
-    saida: float = 0
-    data: str
-
-movimentos: List[Movimento] = []
-
-@router.get("/financeiro", response_model=List[Movimento])
-def listar_movimentos():
-    return movimentos
-
-@router.post("/financeiro", response_model=Movimento)
-def adicionar_movimento(m: Movimento):
-    movimentos.append(m)
-    return m

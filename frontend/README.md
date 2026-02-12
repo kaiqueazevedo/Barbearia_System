@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+#  Barbearia System --- Full Stack Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema Full Stack para gerenciamento de barbearia desenvolvido com
+FastAPI + React, focado em arquitetura organizada, API REST estruturada
+e integração frontend/backend.
 
-Currently, two official plugins are available:
+> Projeto desenvolvido com foco em prática profissional de backend,
+> modelagem de dados e consumo de API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+------------------------------------------------------------------------
 
-## React Compiler
+##  Visão Geral
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O Barbearia System é uma aplicação web completa que permite:
 
-## Expanding the ESLint configuration
+-   Gestão de clientes
+-   Cadastro de serviços
+-   Controle de agendamentos
+-   Controle de estoque
+-   Gestão financeira
+-   Integração via API REST
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+A aplicação foi construída seguindo separação clara de responsabilidades
+entre backend e frontend.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+------------------------------------------------------------------------
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Arquitetura do Projeto
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+###  Backend (API REST)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+-   FastAPI
+-   SQLite
+-   SQLAlchemy
+-   Uvicorn
+-   Estrutura modular (rotas, models, database)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Responsável por: - Regras de negócio - Persistência de dados - Endpoints
+RESTful - Integração com banco de dados - Configuração de CORS
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Frontend
+
+-   React
+-   TypeScript
+-   Vite
+-   CSS customizado
+
+Responsável por: - Interface moderna - Consumo da API via HTTP -
+Gerenciamento de estados - Navegação por rotas
+
+------------------------------------------------------------------------
+
+## Stack Tecnológica
+
+  Camada       Tecnologia
+  ------------ --------------------
+  Backend      Python + FastAPI
+  ORM          SQLAlchemy
+  Banco        SQLite
+  Frontend     React + TypeScript
+  Build Tool   Vite
+  API Docs     Swagger (/docs)
+
+------------------------------------------------------------------------
+
+## Estrutura do Projeto
+
+Barbearia_System/ │ ├── backend/ │ ├── main.py │ ├── models/ │ ├──
+routes/ │ ├── database/ │ └── requirements.txt │ ├── frontend/ │ ├──
+src/ │ │ ├── components/ │ │ ├── pages/ │ │ └── services/ │ ├──
+package.json │ └── vite.config.ts │ └── barbearia.db
+
+------------------------------------------------------------------------
+
+##  Funcionalidades Implementadas
+
+-   CRUD completo de clientes
+-   CRUD de serviços
+-   CRUD de agendamentos
+-   Controle de estoque
+-   Módulo financeiro
+-   Integração frontend + backend
+-   Documentação automática da API
+-   Estrutura preparada para expansão
+
+------------------------------------------------------------------------
+
+##  Como Executar o Projeto
+
+### Backend
+
+cd backend python -m venv venv source venv/bin/activate \# Linux/Mac
+venv`\Scripts`{=tex}`\activate     `{=tex}\# Windows pip install -r
+requirements.txt uvicorn main:app --reload
+
+API disponível em: http://127.0.0.1:8000
+
+Documentação: http://127.0.0.1:8000/docs
+
+------------------------------------------------------------------------
+
+### Frontend
+
+cd frontend npm install npm run dev
+
+Aplicação disponível em: http://localhost:5173
+
+------------------------------------------------------------------------
+
+##  Objetivos Técnicos
+
+-   Organização de backend com FastAPI
+-   Modelagem relacional
+-   Separação de camadas
+-   Consumo de API no React
+-   Estrutura escalável
+
+------------------------------------------------------------------------
+

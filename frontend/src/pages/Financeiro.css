@@ -1,0 +1,63 @@
+.financeiro-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 15px;
+  /* background: #fff; */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-movimento {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.form-movimento input,
+.form-movimento select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-movimento button {
+  padding: 8px 15px;
+  background-color: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-movimento button:hover {
+  background-color: #2563eb;
+}
+
+.grid-movimentos table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grid-movimentos th, .grid-movimentos td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.valor-entrada {
+  color: green;
+}
+
+.valor-saida {
+  color: red;
+}
+
+.total-diario {
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.filtro-container {
+  margin-bottom: 15px;
+}

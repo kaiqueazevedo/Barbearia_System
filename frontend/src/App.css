@@ -1,0 +1,54 @@
+:root {
+  --primary: #cba35c; /* Dourado Barbearia */
+  --bg-dark: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --text-main: #ffffff;
+  --text-dim: #a0a0a0;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, #1a1a1a, #0f0f0f);
+  color: var(--text-main);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px; /* Centraliza o conteúdo em telas ultra-wide */
+  margin: 0 auto;
+  padding: 40px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-container button[type="submit"] {
+  font-size: 16px;         /* aumenta a fonte do texto */
+  padding: 12px 20px;      /* aumenta o espaço interno (altura e largura) */
+  min-width: 150px;        /* largura mínima consistente */
+  border-radius: 6px;      /* cantos arredondados */
+  margin-top: 10px;        /* espaço acima do botão */
+  border: none;            /* remove borda padrão */
+  background-color: #2563eb; /* cor consistente com Financeiro */
+  color: #fff;             /* texto branco */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.page-container button[type="submit"]:hover {
+  background-color: #3a3a5c; /* efeito hover */
+}

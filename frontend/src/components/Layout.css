@@ -1,0 +1,27 @@
+/* Reseta o comportamento do navegador */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Evita barra de rolagem horizontal chata */
+}
+
+/* O container principal agora ocupa 100% sem restrições */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw; /* Largura total da Viewport */
+  min-height: 100vh; /* Altura total da Viewport */
+  background: radial-gradient(circle at top right, #1a1a1a, #0f0f0f);
+  color: #ffffff;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  padding: 40px;
+  /* Se você quiser que o conteúdo não fique "esticado demais" em monitores UltraWide, 
+     mantenha o max-width, senão, remova a linha abaixo */
+  max-width: 100%; 
+}

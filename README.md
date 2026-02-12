@@ -52,14 +52,14 @@ Gerenciamento de estados - Navegação por rotas
 
 ## Stack Tecnológica
 
-  Camada       Tecnologia
-  ------------ --------------------
-  Backend      Python + FastAPI
-  ORM          SQLAlchemy
-  Banco        SQLite
-  Frontend     React + TypeScript
-  Build Tool   Vite
-  API Docs     Swagger (/docs)
+| Camada      | Tecnologia            |
+|------------|----------------------|
+| Backend    | Python + FastAPI     |
+| ORM        | SQLAlchemy           |
+| Banco      | SQLite               |
+| Frontend   | React + TypeScript   |
+| Build Tool | Vite                 |
+| API Docs   | Swagger (`/docs`)    |
 
 ------------------------------------------------------------------------
 trutura do Projeto

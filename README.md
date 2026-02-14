@@ -100,7 +100,7 @@ trutura do Projeto
 ### Backend
 
 cd backend python -m venv venv source venv/bin/activate \# Linux/Mac
-venv`\Scripts`{=tex}`\activate     `{=tex}\# Windows pip install -r
+venv`\Scripts``\activate  # Windows pip install -r
 requirements.txt uvicorn main:app --reload
 
 API disponível em: http://127.0.0.1:8000
